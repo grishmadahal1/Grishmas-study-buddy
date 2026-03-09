@@ -1,10 +1,13 @@
+jest.mock("openai", () => {
+  return jest.fn().mockImplementation(() => ({}));
+});
+jest.mock("../../src/models/ExplanationModel");
+jest.mock("../../src/services/AIService");
+
 const explanationService = require("../../src/services/ExplanationService");
 const { ValidationError } = require("../../src/services/FlashcardService");
 const explanationModel = require("../../src/models/ExplanationModel");
 const aiService = require("../../src/services/AIService");
-
-jest.mock("../../src/models/ExplanationModel");
-jest.mock("../../src/services/AIService");
 
 describe("ExplanationService", () => {
   afterEach(() => jest.restoreAllMocks());

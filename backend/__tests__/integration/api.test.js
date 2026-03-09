@@ -1,16 +1,16 @@
-const request = require("supertest");
-
-// Mock TypeORM data source before requiring app
+jest.mock("openai", () => {
+  return jest.fn().mockImplementation(() => ({}));
+});
 jest.mock("../../src/database/data-source", () => ({
   getRepository: jest.fn(),
   initialize: jest.fn().mockResolvedValue(true),
   isInitialized: true,
 }));
-
 jest.mock("../../src/models/SessionModel");
 jest.mock("../../src/models/ExplanationModel");
 jest.mock("../../src/services/AIService");
 
+const request = require("supertest");
 const app = require("../../src/app").express;
 const sessionModel = require("../../src/models/SessionModel");
 const aiService = require("../../src/services/AIService");

@@ -1,9 +1,12 @@
+jest.mock("openai", () => {
+  return jest.fn().mockImplementation(() => ({}));
+});
+jest.mock("../../src/models/SessionModel");
+
 const sessionService = require("../../src/services/SessionService");
 const { NotFoundError } = require("../../src/services/SessionService");
 const { ValidationError } = require("../../src/services/FlashcardService");
 const sessionModel = require("../../src/models/SessionModel");
-
-jest.mock("../../src/models/SessionModel");
 
 describe("SessionService", () => {
   afterEach(() => jest.restoreAllMocks());

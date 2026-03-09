@@ -4,9 +4,9 @@ class SessionController {
   /**
    * GET /api/sessions
    */
-  getAll(req, res, next) {
+  async getAll(req, res, next) {
     try {
-      const sessions = sessionService.getAll();
+      const sessions = await sessionService.getAll();
       res.json({ sessions });
     } catch (err) {
       next(err);
@@ -16,9 +16,9 @@ class SessionController {
   /**
    * GET /api/sessions/:id
    */
-  getById(req, res, next) {
+  async getById(req, res, next) {
     try {
-      const session = sessionService.getById(req.params.id);
+      const session = await sessionService.getById(req.params.id);
       res.json({ session });
     } catch (err) {
       next(err);
@@ -28,10 +28,10 @@ class SessionController {
   /**
    * POST /api/sessions
    */
-  create(req, res, next) {
+  async create(req, res, next) {
     try {
       const { title, cards } = req.body;
-      const session = sessionService.create(title, cards);
+      const session = await sessionService.create(title, cards);
       res.status(201).json({ session });
     } catch (err) {
       next(err);
@@ -41,9 +41,9 @@ class SessionController {
   /**
    * DELETE /api/sessions/:id
    */
-  delete(req, res, next) {
+  async delete(req, res, next) {
     try {
-      sessionService.delete(req.params.id);
+      await sessionService.delete(req.params.id);
       res.json({ success: true });
     } catch (err) {
       next(err);

@@ -1,47 +1,53 @@
-const { db } = require("../database/connection");
+const AppDataSource = require("../database/data-source");
+const Session = require("../entities/Session");
 
 class SessionModel {
   /**
-   * @returns {Array<{id: number, title: string, card_count: number, created_at: string}>}
+   * @returns {import("typeorm").Repository}
    */
-  findAll() {
-    return db
-      .prepare("SELECT id, title, card_count, created_at FROM sessions ORDER BY created_at DESC")
-      .all();
+  get repo() {
+    return AppDataSource.getRepository(Session);
+  }
+
+  /**
+   * @returns {Promise<Array<{id: number, title: string, cardCount: number, createdAt: Date}>>}
+   */
+  async findAll() {
+    return this.repo.find({
+      select: ["id", "title", "cardCount", "createdAt"],
+      order: { createdAt: "DESC" },
+    });
   }
 
   /**
    * @param {number} id
-   * @returns {object | undefined} Session with parsed cards, or undefined
+   * @returns {Promise<object|null>}
    */
-  findById(id) {
-    const session = db.prepare("SELECT * FROM sessions WHERE id = ?").get(id);
-    if (session) {
-      session.cards = JSON.parse(session.cards);
-    }
-    return session;
+  async findById(id) {
+    return this.repo.findOneBy({ id });
   }
 
   /**
    * @param {string} title
    * @param {Array<{question: string, answer: string}>} cards
-   * @returns {object}
+   * @returns {Promise<object>}
    */
-  create(title, cards) {
-    const result = db
-      .prepare("INSERT INTO sessions (title, cards, card_count) VALUES (?, ?, ?)")
-      .run(title, JSON.stringify(cards), cards.length);
-
-    return this.findById(result.lastInsertRowid);
+  async create(title, cards) {
+    const session = this.repo.create({
+      title,
+      cards,
+      cardCount: cards.length,
+    });
+    return this.repo.save(session);
   }
 
   /**
    * @param {number} id
-   * @returns {boolean} True if deleted
+   * @returns {Promise<boolean>}
    */
-  delete(id) {
-    const result = db.prepare("DELETE FROM sessions WHERE id = ?").run(id);
-    return result.changes > 0;
+  async delete(id) {
+    const result = await this.repo.delete(id);
+    return result.affected > 0;
   }
 }
 

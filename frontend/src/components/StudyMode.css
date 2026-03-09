@@ -1,0 +1,250 @@
+.study-mode {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.study-progress {
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6b9b76, #5a8a65);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #86868b;
+}
+
+.score-tracker {
+  color: #5a8a65;
+  font-weight: 600;
+}
+
+.study-card-wrapper {
+  perspective: 1000px;
+  height: 320px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.study-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.study-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.study-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.03);
+}
+
+.study-card-back {
+  transform: rotateY(180deg);
+  background: #f4f8f5;
+  border-color: rgba(107, 155, 118, 0.15);
+}
+
+.study-card-face .card-label {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #86868b;
+  margin-bottom: 1rem;
+}
+
+.study-card-back .card-label {
+  color: #5a8a65;
+}
+
+.study-card-face p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.flip-hint {
+  position: absolute;
+  bottom: 1.2rem;
+  font-size: 0.75rem;
+  color: #aeaeb2;
+}
+
+.study-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.study-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-nav {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #6e6e73;
+  border-radius: 12px;
+  padding: 0.65rem 1.2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.btn-nav:hover:not(:disabled) {
+  background: #f5f5f7;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.btn-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-correct {
+  background: #f0f8f2;
+  border: 1px solid rgba(107, 155, 118, 0.25);
+  color: #5a8a65;
+  border-radius: 12px;
+  padding: 0.65rem 1.2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-correct:hover {
+  background: #e3f0e5;
+  border-color: rgba(107, 155, 118, 0.4);
+}
+
+.btn-wrong {
+  background: #fef7f5;
+  border: 1px solid rgba(220, 120, 95, 0.2);
+  color: #c4725a;
+  border-radius: 12px;
+  padding: 0.65rem 1.2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-wrong:hover {
+  background: #fceee9;
+  border-color: rgba(220, 120, 95, 0.35);
+}
+
+/* Completed screen */
+.study-completed {
+  max-width: 400px;
+  margin: 5rem auto;
+  text-align: center;
+  padding: 1rem;
+}
+
+.study-completed h2 {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.final-score {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.score-number {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 4rem;
+  font-weight: 600;
+  color: #5a8a65;
+}
+
+.score-divider {
+  font-size: 2.5rem;
+  color: #d1d1d6;
+}
+
+.score-total {
+  font-size: 2.5rem;
+  color: #aeaeb2;
+}
+
+.score-label {
+  color: #86868b;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .study-card-wrapper {
+    height: 260px;
+  }
+
+  .study-controls {
+    flex-direction: column;
+  }
+
+  .study-actions {
+    width: 100%;
+  }
+
+  .study-actions button {
+    flex: 1;
+  }
+
+  .btn-nav {
+    width: 100%;
+  }
+}

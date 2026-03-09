@@ -1,0 +1,107 @@
+.deck-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  padding: 0.5rem;
+}
+
+.flashcard-container {
+  perspective: 1000px;
+  height: 220px;
+  cursor: pointer;
+  animation: fadeInUp 0.4s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.25s ease;
+}
+
+.flashcard-container:hover .flashcard-face {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+  background: #f4f8f5;
+  border-color: rgba(107, 155, 118, 0.15);
+}
+
+.card-label {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #86868b;
+  margin-bottom: 0.6rem;
+}
+
+.card-label--answer {
+  color: #5a8a65;
+}
+
+.flashcard-face p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.btn-explain {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #86868b;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.15s ease;
+}
+
+.btn-explain:hover {
+  color: #5a8a65;
+  border-color: rgba(107, 155, 118, 0.25);
+  background: rgba(107, 155, 118, 0.04);
+}

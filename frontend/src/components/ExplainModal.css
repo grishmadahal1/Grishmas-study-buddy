@@ -1,0 +1,214 @@
+.explain-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1.5rem;
+  animation: overlayIn 0.2s ease both;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.explain-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), 0 2px 12px rgba(0, 0, 0, 0.06);
+  animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.explain-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem 1.5rem 0;
+  gap: 1rem;
+}
+
+.explain-modal-label {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #86868b;
+  margin-bottom: 0.4rem;
+}
+
+.explain-modal-label--answer {
+  color: #5a8a65;
+}
+
+.explain-modal-question {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.explain-modal-close {
+  background: none;
+  border: none;
+  color: #aeaeb2;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.1rem 0.4rem;
+  border-radius: 8px;
+  line-height: 1;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.explain-modal-close:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #6e6e73;
+}
+
+.explain-modal-answer {
+  padding: 1rem 1.5rem 0;
+}
+
+.explain-modal-answer p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.explain-modal-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 1.25rem 1.5rem;
+}
+
+.explain-modal-body {
+  padding: 0 1.5rem 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Markdown content */
+.explain-markdown p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #333;
+  margin: 0 0 0.6rem;
+}
+
+.explain-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.explain-markdown strong {
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.explain-markdown code {
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 0.82rem;
+  background: rgba(107, 155, 118, 0.08);
+  padding: 0.15rem 0.4rem;
+  border-radius: 5px;
+  color: #5a8a65;
+}
+
+.explain-markdown pre {
+  background: #1d1d1f;
+  color: #e8e8e8;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.explain-markdown pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.explain-markdown ul,
+.explain-markdown ol {
+  padding-left: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.explain-markdown li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 0.3rem;
+}
+
+/* Loading dots */
+.explain-loading {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.explain-dot {
+  width: 7px;
+  height: 7px;
+  background: #aeaeb2;
+  border-radius: 50%;
+  animation: explainBounce 1.2s ease infinite;
+}
+
+.explain-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.explain-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes explainBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 480px) {
+  .explain-overlay {
+    padding: 1rem;
+    align-items: flex-end;
+  }
+
+  .explain-modal {
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+  }
+}

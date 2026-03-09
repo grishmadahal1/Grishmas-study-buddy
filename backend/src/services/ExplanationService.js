@@ -15,14 +15,14 @@ class ExplanationService {
     }
 
     // Check cache
-    const cached = explanationModel.findByCard(question, answer);
+    const cached = await explanationModel.findByCard(question, answer);
     if (cached) {
       return cached;
     }
 
     // Generate, cache, and return
     const explanation = await aiService.explainCard(question, answer);
-    explanationModel.create(question, answer, explanation);
+    await explanationModel.create(question, answer, explanation);
     return explanation;
   }
 }

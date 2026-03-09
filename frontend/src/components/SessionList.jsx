@@ -33,7 +33,7 @@ export default function SessionList({ onLoadSession, onNewSession }) {
   }
 
   function formatDate(dateStr) {
-    const date = new Date(dateStr + "Z");
+    const date = new Date(dateStr);
     return date.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -78,10 +78,10 @@ export default function SessionList({ onLoadSession, onNewSession }) {
                 <h3>{session.title}</h3>
                 <div className="session-meta">
                   <span className="session-count">
-                    {session.card_count} cards
+                    {session.cardCount} cards
                   </span>
                   <span className="session-date">
-                    {formatDate(session.created_at)}
+                    {formatDate(session.createdAt)}
                   </span>
                 </div>
               </div>

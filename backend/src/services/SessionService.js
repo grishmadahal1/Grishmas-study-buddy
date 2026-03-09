@@ -3,19 +3,19 @@ const { ValidationError } = require("./FlashcardService");
 
 class SessionService {
   /**
-   * @returns {Array<{id: number, title: string, card_count: number, created_at: string}>}
+   * @returns {Promise<Array<{id: number, title: string, cardCount: number, createdAt: Date}>>}
    */
-  getAll() {
+  async getAll() {
     return sessionModel.findAll();
   }
 
   /**
    * @param {number} id
-   * @returns {object}
+   * @returns {Promise<object>}
    * @throws {NotFoundError}
    */
-  getById(id) {
-    const session = sessionModel.findById(id);
+  async getById(id) {
+    const session = await sessionModel.findById(id);
     if (!session) {
       throw new NotFoundError("Session not found.");
     }
@@ -25,10 +25,10 @@ class SessionService {
   /**
    * @param {string} title
    * @param {Array<{question: string, answer: string}>} cards
-   * @returns {object}
+   * @returns {Promise<object>}
    * @throws {ValidationError}
    */
-  create(title, cards) {
+  async create(title, cards) {
     if (!cards || !Array.isArray(cards) || cards.length === 0) {
       throw new ValidationError("Cards are required.");
     }
@@ -39,10 +39,11 @@ class SessionService {
 
   /**
    * @param {number} id
+   * @returns {Promise<void>}
    * @throws {NotFoundError}
    */
-  delete(id) {
-    const deleted = sessionModel.delete(id);
+  async delete(id) {
+    const deleted = await sessionModel.delete(id);
     if (!deleted) {
       throw new NotFoundError("Session not found.");
     }

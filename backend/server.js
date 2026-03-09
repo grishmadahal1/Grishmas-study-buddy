@@ -1,11 +1,20 @@
 /**
  * @fileoverview Application entry point.
- * Boots the Express server on the configured port.
+ * Initializes TypeORM and boots the Express server.
  */
 
+const AppDataSource = require("./src/database/data-source");
 const config = require("./src/config");
 const app = require("./src/app");
 
-app.express.listen(config.port, () => {
-  console.log(`Server running on http://localhost:${config.port}`);
-});
+AppDataSource.initialize()
+  .then(() => {
+    console.log("Database connected.");
+    app.express.listen(config.port, () => {
+      console.log(`Server running on http://localhost:${config.port}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Database connection failed:", err);
+    process.exit(1);
+  });

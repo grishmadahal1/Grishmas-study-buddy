@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const config = require("./config");
 const routes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
 
@@ -16,7 +17,7 @@ class App {
   }
 
   _configureMiddleware() {
-    this._app.use(cors());
+    this._app.use(cors({ origin: config.corsOrigin }));
     this._app.use(express.json({ limit: "10mb" }));
   }
 

@@ -6,6 +6,7 @@ dotenv.config({ path: path.join(__dirname, "../../.env") });
 /** @type {Readonly<{port: number, db: {url: string}, openai: {apiKey: string, model: string, temperature: number}, upload: {maxFileSize: number, maxTextLength: number, allowedMimeTypes: string[]}}>} */
 const config = Object.freeze({
   port: parseInt(process.env.PORT, 10) || 5000,
+  corsOrigin: process.env.CORS_ORIGIN || "*",
   db: {
     url: process.env.DATABASE_URL || "postgres://localhost:5432/flashcards",
   },

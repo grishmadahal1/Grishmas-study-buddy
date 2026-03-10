@@ -45,7 +45,7 @@ export default function InputSection({ onGenerateText, onGeneratePDF, loading })
   return (
     <section className="input-section">
       <div className="input-header">
-        <h1>FlashGen</h1>
+        <h1>Study Buddy</h1>
         <p>Paste your notes or upload a PDF to generate study flashcards with AI.</p>
       </div>
 

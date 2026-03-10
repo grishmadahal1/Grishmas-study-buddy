@@ -9,7 +9,7 @@ describe("InputSection", () => {
       <InputSection onGenerateText={vi.fn()} onGeneratePDF={vi.fn()} loading={false} />
     );
 
-    expect(screen.getByText("FlashGen")).toBeInTheDocument();
+    expect(screen.getByText("Study Buddy")).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/paste your notes/i)).toBeInTheDocument();
   });
 
